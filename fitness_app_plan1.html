@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEAST MODE FITNESS 💪</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --secondary: #1a1a1a;
+            --gold: #ffd700;
+            --success: #00ff41;
+            --danger: #ff0000;
+            --bg-dark: #0a0a0a;
+            --bg-card: #1e1e1e;
+            --text-light: #ffffff;
+            --text-gold: #ffd700;
+            --neon-blue: #00ffff;
+            --neon-green: #39ff14;
+            --border-glow: rgba(255, 215, 0, 0.5);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 50%, #2d2d2d 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER BEAST MODE */
+        header {
+            background: linear-gradient(45deg, #000, #1a1a1a, #000);
+            padding: 1rem 0;
+            border-bottom: 3px solid var(--gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--gold), var(--primary), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* DASHBOARD METRICHE PRINCIPALI */
+        .metrics-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--bg-card), #2a2a2a);
+            border-radius: 20px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .metric-card {
+            background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid var(--border-glow);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+        }
+
+        .metric-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            margin-bottom: 0.5rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+            to { text-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 215, 0, 0.8); }
+        }
+
+        .metric-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .streak-card {
+            background: linear-gradient(145deg, #1a4d2e, #2d5a3d);
+            border-color: var(--neon-green);
+        }
+
+        .streak-card .metric-number {
+            color: var(--neon-green);
+            text-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
+        }
+
+        .time-card {
+            background: linear-gradient(145deg, #1a2a4d, #2d3d5a);
+            border-color: var(--neon-blue);
+        }
+
+        .time-card .metric-number {
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+
+        /* SEZIONE MOTIVAZIONALE CON ATLETI */
+        .motivation-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--bg-card), #2a2a2a);
+            border-radius: 20px;
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .motivation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="80" cy="40" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="40" cy="80" r="1" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .athlete-hero {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .athlete-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            object-fit: cover;
+            background: linear-gradient(45deg, #333, #555);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .athlete-quote {
+            flex: 1;
+        }
+
+        .quote-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.3;
+        }
+
+        .quote-author {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* NAVIGATION TABS */
+        .nav-tabs {
+            display: flex;
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 0.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border-glow);
+            overflow-x: auto;
+        }
+
+        .nav-tabs button {
+            background: none;
+            border: none;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-tabs button:hover {
+            background: rgba(255, 107, 53, 0.2);
+            color: var(--primary);
+        }
+
+        .nav-tabs button.active {
+            background: linear-gradient(45deg, var(--primary), var(--gold));
+            color: var(--bg-dark);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* CONTENT SECTIONS */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .workout-card {
+            background: linear-gradient(135deg, var(--bg-card), #2a2a2a);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-glow);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .workout-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .exercise-group {
+            margin-bottom: 2rem;
+        }
+
+        .group-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .exercise-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .exercise-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .exercise-item.completed {
+            background: rgba(57, 255, 20, 0.1);
+            border-left-color: var(--neon-green);
+        }
+
+        .exercise-item.completed::after {
+            content: '✓';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .exercise-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .exercise-details {
+            color: var(--text-gold);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .exercise-instructions {
+            color: #bbb;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .exercise-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* BUTTONS */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), #ff8c42);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, var(--neon-green), #00cc33);
+            color: black;
+            box-shadow: 0 4px 15px rgba(57, 255, 20, 0.4);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(57, 255, 20, 0.6);
+        }
+
+        /* TIMER */
+        .timer-container {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-radius: 20px;
+            border: 2px solid var(--neon-blue);
+            margin: 2rem 0;
+        }
+
+        .timer-display {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--neon-blue);
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+            margin: 2rem 0;
+            letter-spacing: 3px;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* NUTRITION */
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .meal-card {
+            background: linear-gradient(135deg, var(--bg-card), #2a2a2a);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-glow);
+            transition: all 0.3s ease;
+        }
+
+        .meal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .meal-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .meal-content {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .meal-time {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .metrics-dashboard {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .metric-number {
+                font-size: 2.5rem;
+            }
+            
+            .athlete-hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .quote-text {
+                font-size: 1.4rem;
+            }
+            
+            .timer-display {
+                font-size: 2.5rem;
+            }
+            
+            .exercise-actions {
+                justify-content: center;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* LOADING ANIMATIONS */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border-glow);
+            border-radius: 50%;
+            border-top-color: var(--gold);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">BEAST MODE</div>
+                <div class="date-display" id="currentDate"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- DASHBOARD METRICHE PRINCIPALI -->
+        <div class="metrics-dashboard">
+            <div class="metric-card streak-card">
+                <div class="metric-number" id="streakDisplay">0</div>
+                <div class="metric-label">🔥 STREAK GIORNI</div>
+            </div>
+            <div class="metric-card time-card">
+                <div class="metric-number" id="totalTimeDisplay">0h</div>
+                <div class="metric-label">⏱️ TEMPO TOTALE</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number" id="workoutsCompleted">0</div>
+                <div class="metric-label">💪 ALLENAMENTI</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number" id="recordsCount">0</div>
+                <div class="metric-label">🏆 RECORD</div>
+            </div>
+        </div>
+
+        <!-- SEZIONE MOTIVAZIONALE ATLETI -->
+        <div class="motivation-section">
+            <div class="athlete-hero">
+                <div class="athlete-image" id="athleteImage">💪</div>
+                <div class="athlete-quote">
+                    <div class="quote-text" id="dailyQuote"></div>
+                    <div class="quote-author" id="quoteAuthor"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="today">OGGI</button>
+            <button class="tab-btn" data-tab="timer">TIMER</button>
+            <button class="tab-btn" data-tab="nutrition">DIETA</button>
+            <button class="tab-btn" data-tab="progress">PROGRESSI</button>
+        </nav>
+
+        <!-- TAB OGGI -->
+        <div id="today" class="tab-content active">
+            <div class="workout-card">
+                <div class="workout-title" id="todayWorkoutTitle">RIPOSO</div>
+                <div id="todayWorkoutContent"></div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn btn-success" onclick="completeAllWorkout()" id="completeAllBtn">
+                        COMPLETA TUTTO L'ALLENAMENTO
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB TIMER -->
+        <div id="timer" class="tab-content">
+            <div class="timer-container">
+                <h2 style="color: var(--gold); margin-bottom: 2rem; font-size: 2rem;">⏱️ BEAST TIMER</h2>
+                <div class="timer-display" id="timerDisplay">00:00:00</div>
+                <div class="timer-controls">
+                    <button class="btn btn-success" onclick="startTimer()">START</button>
+                    <button class="btn btn-primary" onclick="pauseTimer()">PAUSA</button>
+                    <button class="btn btn-primary" onclick="resetTimer()">RESET</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB DIETA -->
+        <div id="nutrition" class="tab-content">
+            <div class="workout-card">
+                <div class="workout-title">🍽️ DIETA DEL GIORNO</div>
+                <div class="nutrition-grid" id="nutritionGrid"></div>
+            </div>
+        </div>
+
+        <!-- TAB PROGRESSI -->
+        <div id="progress" class="tab-content">
+            <div class="workout-card">
+                <div class="workout-title">📊 I TUOI PROGRESSI</div>
+                <div id="progressContent">
+                    <p style="text-align: center; color: var(--text-light); font-size: 1.2rem;">
+                        Inizia ad allenarti per vedere i tuoi progressi qui! 💪
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // PROGRAMMA DI ALLENAMENTO AGGIORNATO
+        const workoutPrograms = {
+            monday: {
+                title: "PETTO + BICIPITI",
+                exercises: [
+                    {
+                        group: "PETTO",
+                        list: [
+                            { name: "PANCA INCLINATA BILANCIERE", sets: "4×6-8", rir: "RIR 1-2", rest: "2'", instructions: "Mantieni il controllo, panca a 30-45°, tocca il petto parte alta" },
+                            { name: "SPINTE MANUBRI INCLINATA", sets: "3×8-10", rest: "90''", instructions: "Massima escursione, squeeze al top, movimento controllato" },
+                            { name: "CROCI AI CAVI ALTI/INCLINATA", sets: "3×12-15", rest: "75''", instructions: "Focus stretch e contrazione, movimento ad arco" },
+                            { name: "DIP ALLE PARALLELE (PETTO)", sets: "3×8-10", rest: "90''", instructions: "Busto inclinato avanti, scendi profondo, focus petto" }
+                        ]
+                    },
+                    {
+                        group: "BICIPITI",
+                        list: [
+                            { name: "CURL BILANCIERE", sets: "4×8-10", rest: "90''", instructions: "Movimento controllato, no slancio, pausa al top" },
+                            { name: "CURL MANUBRI INCLINATI", sets: "3×10-12", rest: "75''", instructions: "Panca a 45°, stretch completo, rotazione polso" },
+                            { name: "HAMMER CURL MANUBRI", sets: "3×12-15", rest: "60''", instructions: "Presa neutra, movimento controllato, focus brachiale" }
+                        ]
+                    }
+                ]
+            },
+            tuesday: {
+                title: "DORSO + TRICIPITI + COLLO (A)",
+                exercises: [
+                    {
+                        group: "DORSO",
+                        list: [
+                            { name: "TRAZIONI PRESA AMPIA", sets: "4×6-8", rest: "2'", instructions: "Presa 1.5x spalle, tira al petto, scendi completo" },
+                            { name: "REMATORE BILANCIERE/MANUBRIO", sets: "4×8-10", rest: "2'", instructions: "Busto parallelo, tira al ventre, gomiti vicini al corpo" },
+                            { name: "LAT MACHINE INVERSA/STRETTA", sets: "3×10-12", rest: "90''", instructions: "Presa supina o stretta, focus latissimi" },
+                            { name: "PULLOVER AI CAVI", sets: "3×12-15", rest: "75''", instructions: "Movimento controllato, focus gran dorsale" }
+                        ]
+                    },
+                    {
+                        group: "TRICIPITI",
+                        list: [
+                            { name: "PANCA STRETTA BILANCIERE", sets: "4×6-8", rest: "2'", instructions: "Mani larghezza spalle, gomiti vicini al corpo" },
+                            { name: "FRENCH PRESS EZ", sets: "3×8-10", rest: "90''", instructions: "Solo movimento avambraccio, gomiti fermi" },
+                            { name: "PUSHDOWN CAVO", sets: "3×12-15", rest: "60''", instructions: "Gomiti fissi, estensione completa" }
+                        ]
+                    },
+                    {
+                        group: "COLLO A",
+                        list: [
+                            { name: "FLESSIONE COLLO", sets: "2×15-20", rest: "60''", instructions: "Movimento controllato, no strappi" },
+                            { name: "ESTENSIONE COLLO", sets: "2×15-20", rest: "60''", instructions: "Resistenza graduale" },
+                            { name: "LATERALE DX/SX", sets: "2×12-15", rest: "60''", instructions: "Per ogni lato" }
+                        ]
+                    }
+                ]
+            },
+            wednesday: {
+                title: "GAMBE COMPLETE",
+                exercises: [
+                    {
+                        group: "GAMBE COMPLETE",
+                        list: [
+                            { name: "SQUAT", sets: "4×6-8", rest: "3'", instructions: "Scendi sotto parallelo, spinta con talloni, core contratto" },
+                            { name: "HIP THRUST", sets: "4×8-10", rest: "2'", instructions: "Squeeze glutei al top, spalle su panca" },
+                            { name: "AFFONDI CAMMINATA", sets: "3×10 passi/gamba", rest: "90''", instructions: "Scendi verticalmente, ginocchio a 90°" },
+                            { name: "LEG PRESS 45°", sets: "3×10-12", rest: "90''", instructions: "Piedi larghezza spalle, discesa controllata" },
+                            { name: "LEG CURL SDRAIATO", sets: "3×10-12 + Rest-pause ultimo", rest: "90''", instructions: "Focus femorali, movimento controllato" },
+                            { name: "CALF RAISE IN PIEDI", sets: "4×10-12", rest: "60''", instructions: "Massima escursione, pausa al top" },
+                            { name: "CALF RAISE SEDUTO", sets: "3×15-20", rest: "60''", instructions: "Focus soleo" }
+                        ]
+                    }
+                ]
+            },
+            thursday: {
+                title: "RECUPERO ATTIVO",
+                exercises: [
+                    {
+                        group: "RECUPERO",
+                        list: [
+                            { name: "LISS CARDIO", sets: "30-40 min", rest: "-", instructions: "Camminata/cyclette intensità moderata" },
+                            { name: "STRETCHING/MOBILITÀ", sets: "15-20 min", rest: "-", instructions: "Focus aree tese" },
+                            { name: "SAUNA/BAGNO TURCO", sets: "10-15 min", rest: "-", instructions: "Rilassamento e recupero" }
+                        ]
+                    }
+                ]
+            },
+            friday: {
+                title: "SPALLE COMPLETE + COLLO (B)",
+                exercises: [
+                    {
+                        group: "SPALLE",
+                        list: [
+                            { name: "MILITARY PRESS MANUBRI", sets: "4×6-8", rest: "2'", instructions: "Partenza da spalle, spinta verticale" },
+                            { name: "ALZATE LATERALI CAVI/MANUBRI", sets: "4×12-15", rest: "75''", instructions: "Leggera inclinazione avanti, mignolo alto" },
+                            { name: "REAR DELT FLY", sets: "3×12-15", rest: "75''", instructions: "Pec deck inversa o manubri, focus deltoide posteriore" },
+                            { name: "FACE PULL", sets: "3×12-15", rest: "60''", instructions: "Tira verso viso, gomiti alti" },
+                            { name: "SCROLLATE MANUBRI/BILANCIERE", sets: "3×10-12", rest: "90''", instructions: "Solo movimento spalle, no rotazione" }
+                        ]
+                    },
+                    {
+                        group: "RICHIAMO BRACCIA",
+                        list: [
+                            { name: "CURL MANUBRI", sets: "2×12-15", rest: "60''", instructions: "Leggero, focus pump" },
+                            { name: "PUSHDOWN CORDA", sets: "2×12-15", rest: "60''", instructions: "Leggero, focus pump" }
+                        ]
+                    },
+                    {
+                        group: "COLLO B + CORE",
+                        list: [
+                            { name: "FLESSIONE COLLO", sets: "2×15-20", rest: "60''", instructions: "Movimento controllato" },
+                            { name: "ESTENSIONE COLLO", sets: "2×15-20", rest: "60''", instructions: "Resistenza graduale" },
+                            { name: "LATERALE DX/SX", sets: "2×12-15", rest: "60''", instructions: "Per ogni lato" },
+                            { name: "ISOMETRIE MULTIDIREZIONALI", sets: "3×20''", rest: "60''", instructions: "Tenute statiche" },
+                            { name: "STOMACH VACUUM", sets: "3×20''", rest: "60''", instructions: "Inspirazione profonda, tirare ombelico" },
+                            { name: "PLANK", sets: "3×45''", rest: "60''", instructions: "Corpo allineato" }
+                        ]
+                    }
+                ]
+            },
+            saturday: {
+                title: "POSTERIORI + CONDITIONING",
+                exercises: [
+                    {
+                        group: "POSTERIORI",
+                        list: [
+                            { name: "STACCO RUMENO (RDL)", sets: "4×6-8", rest: "2'", instructions: "Ginocchia leggermente piegate, focus femorali" },
+                            { name: "HIP THRUST MONO", sets: "3×10-12", rest: "2'", instructions: "Una gamba per volta" },
+                            { name: "NORDIC CURL", sets: "3×8-10", rest: "90''", instructions: "Eccentrica lenta, focus femorali" },
+                            { name: "LEG CURL SEDUTO", sets: "3×12-15", rest: "75''", instructions: "Movimento controllato" },
+                            { name: "CALF RAISE MULTIPLA", sets: "3×15-20", rest: "60''", instructions: "Varie angolazioni" }
+                        ]
+                    },
+                    {
+                        group: "CONDITIONING",
+                        list: [
+                            { name: "FARMER'S WALK", sets: "3×40m", rest: "90''", instructions: "Core + trapezio, passo deciso" },
+                            { name: "HIIT FINISHER", sets: "10 min", rest: "-", instructions: "8×30'' sprint / 60'' camminata" }
+                        ]
+                    }
+                ]
+            },
+            sunday: {
+                title: "RIPOSO TOTALE",
+                exercises: [
+                    {
+                        group: "RIPOSO",
+                        list: [
+                            { name: "PASSEGGIATA LEGGERA", sets: "30-45 min", rest: "-", instructions: "Ritmo rilassato, godersi la natura" },
+                            { name: "STRETCHING DOLCE", sets: "15-20 min", rest: "-", instructions: "Focus mobilità e relax" },
+                            { name: "SAUNA/BAGNO TURCO", sets: "15 min", rest: "-", instructions: "Opzionale, rilassamento totale" }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // DIETA SETTIMANALE
+        const weeklyNutrition = {
+            monday: {
+                "07:00 - IDRATAZIONE": "Acqua tiepida + limone + sale | Spremuta melograno (opz.)",
+                "08:00 - COLAZIONE": "Omelette 3 uova + 3 albumi con spinaci + aglio + 1 cucchiaio EVOO | ¼ avocado | Porridge quinoa + latte mandorla + mirtilli + semi chia + GOS + inulina + cacao 6g + cannella",
+                "12:30 - PRANZO": "Salmone 200g con curcuma + pepe + zenzero | Quinoa ¾ tazza + patata dolce | Broccoli + semi zucca + EVOO | Insalata verde + crauti/kimchi | Ceci/lenticchie 150g",
+                "15:30 - SNACK/POST-WO": "Shake proteico + banana + spinaci + burro mandorle + cacao 6g | 2 quadretti fondente 90%"
+            },
+            tuesday: {
+                "07:00 - IDRATAZIONE": "Acqua tiepida + limone + sale | Spremuta melograno (opz.)",
+                "08:00 - COLAZIONE": "Pancake avena GF + albume + 1 uovo + cannella | Burro d'arachidi | Fragole & lamponi | Tè verde | EVOO 1 cucchiaio a crudo",
+                "12:30 - PRANZO": "Petto pollo 200g al rosmarino + cumino | Riso integrale 100g (aceto mele prima) | Cavolo nero + aglio + EVOO | ¼ avocado | Legumi 150g + fermentati",
+                "15:30 - SNACK/POST-WO": "Yogurt vegetale + proteine + noci + inulina | 1 mela verde"
+            },
+            wednesday: {
+                "07:00 - IDRATAZIONE": "Acqua tiepida + limone + sale | Spremuta melograno (opz.)",
+                "08:00 - COLAZIONE": "Uova strapazzate (3+2) con zucchine + curcuma/pepe + EVOO | Quinoa ½ tazza + semi lino + mirtilli + GOS",
+                "12:30 - PRANZO": "Tacchino 200g con curcuma + limone + zenzero | Patata dolce 200g (aceto mele prima) | Spinaci + sesamo + EVOO | Legumi 150g + fermentati",
+                "15:30 - SNACK/POST-WO": "Shake veg + latte mandorla + fragole + burro anacardi + cacao 6g | 2 quadretti 90%"
+            },
+            thursday: {
+                "07:00 - IDRATAZIONE": "Acqua tiepida + limone + sale | Spremuta melograno (opz.)",
+                "08:00 - COLAZIONE": "Omelette 3+3 con zucchine/peperoni + aglio + prezzemolo + EVOO | ½ avocado | Porridge amaranto + lamponi + semi chia + inulina + cacao 6g + cannella",
+                "12:30 - PRANZO": "Tonno 200g | Bowl crucifere (broccoli+cauli ≥250g) + lenticchie nere 150g + cumino + zenzero + EVOO | Fermentati 2-4 cucchiai",
+                "15:30 - SNACK/POST-WO": "Yogurt vegetale + proteine + mirtilli + 1-2 noci brasiliane | 1 kiwi"
+            },
+            friday: {
+                "07:00 - IDRATAZIONE": "Acqua tiepida + limone + sale | Spremuta melograno (opz.)",
+                "08:00 - COLAZIONE": "Uova strapazzate (3+2) con spinaci + curcuma/pepe + EVOO | Quinoa ½ tazza + semi lino + mirtilli + GOS/inulina | Tè verde",
+                "12:30 - PRANZO": "Manzo magro 200g (solo 1 volta/sett) | Patata dolce 200g (aceto mele prima) | Insalata cavolo cappuccio + carote + semi girasole + EVOO | Legumi 150g + fermentati",
+                "15:30 - SNACK/POST-WO": "Shake proteico + latte riso + banana + burro arachidi + cacao 6g"
+            },
+            saturday: {
+                "07:00 - IDRATAZIONE": "Acqua tiepida + limone + sale | Spremuta melograno (opz.)",
+                "08:00 - COLAZIONE": "Pancake proteici avena GF + albume + proteine | Frutti bosco ≥150g | Burro mandorle | Tè verde + EVOO",
+                "12:30 - PRANZO": "Sgombro/sardine 200g | Quinoa ¾ tazza (aceto mele prima) | Broccoli + spinaci + semi lino + EVOO | Insalata rucola+pomodorini + fermentati | Legumi 150g",
+                "15:30 - SNACK/POST-WO": "Yogurt vegetale + proteine + semi chia + noci | 1 mela"
+            },
+            sunday: {
+                "07:00 - IDRATAZIONE": "Acqua tiepida + limone + sale | Spremuta melograno (opz.)",
+                "08:00 - COLAZIONE": "Omelette 3+3 con cipolla + zucchine/peperoni + aglio + EVOO | ½ avocado | Porridge quinoa + mirtilli + semi chia + inulina + cacao 6g + cannella",
+                "12:30 - PRANZO": "Tacchino 200g al curry (curcuma/pepe + zenzero) | Riso integrale 100g (aceto mele prima) | Cavolini/broccoli + EVOO | Semi zucca + fermentati | Legumi 150g",
+                "15:30 - SNACK/POST-WO": "Shake veg + spinaci + fragole + burro mandorle + cacao 6g | 2 quadretti 90%"
+            }
+        };
+
+        // FRASI MOTIVAZIONALI DEGLI ATLETI
+        const athleteQuotes = {
+            monday: {
+                text: "LA FORZA NON VIENE DAL FISICO. VIENE DA UNA VOLONTÀ INDOMABILE.",
+                author: "ARNOLD SCHWARZENEGGER",
+                emoji: "🏆"
+            },
+            tuesday: {
+                text: "SONO PRECISO. SONO EFFICIENTE. SONO SPIETATO. E SONO PRONTO.",
+                author: "CONOR MCGREGOR",
+                emoji: "🥊"
+            },
+            wednesday: {
+                text: "NON TEMERE IL FALLIMENTO. TEMI DI NON PROVARCI NEANCHE.",
+                author: "BRUCE LEE",
+                emoji: "🐉"
+            },
+            thursday: {
+                text: "LA DISCIPLINA È FARE CIÒ CHE ODI FARE, MA FARLO COME SE LO AMASSI.",
+                author: "MIKE TYSON",
+                emoji: "🥊"
+            },
+            friday: {
+                text: "IMPOSSIBILE È SOLO UN'OPINIONE. FLUTTUA COME UNA FARFALLA, PUNGI COME UN'APE.",
+                author: "MUHAMMAD ALI",
+                emoji: "🦋"
+            },
+            saturday: {
+                text: "IL SUCCESSO NON È FINALE, IL FALLIMENTO NON È FATALE: È IL CORAGGIO DI CONTINUARE CHE CONTA.",
+                author: "ARNOLD SCHWARZENEGGER",
+                emoji: "🔥"
+            },
+            sunday: {
+                text: "IL RIPOSO È PARTE DELL'ALLENAMENTO. ANCHE I GUERRIERI HANNO BISOGNO DI RICARICARE LE ENERGIE.",
+                author: "BRUCE LEE",
+                emoji: "🧘"
+            }
+        };
+
+        // VARIABILI GLOBALI
+        let timerInterval;
+        let timerStart;
+        let timerElapsed = 0;
+        let timerRunning = false;
+
+        // INIZIALIZZAZIONE
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+            loadDashboardMetrics();
+            loadTodayWorkout();
+            loadTodayNutrition();
+            displayDailyQuote();
+            updateDateDisplay();
+        });
+
+        function initializeApp() {
+            if (!localStorage.getItem('workoutData')) {
+                localStorage.setItem('workoutData', JSON.stringify({}));
+            }
+            if (!localStorage.getItem('timerData')) {
+                localStorage.setItem('timerData', JSON.stringify({ totalTime: 0, sessions: [] }));
+            }
+        }
+
+        function setupEventListeners() {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    switchTab(this.dataset.tab);
+                });
+            });
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+        }
+
+        function updateDateDisplay() {
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            document.getElementById('currentDate').textContent = 
+                new Date().toLocaleDateString('it-IT', options);
+        }
+
+        function displayDailyQuote() {
+            const today = new Date();
+            const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+            const todayKey = days[today.getDay()];
+            const quote = athleteQuotes[todayKey];
+            
+            document.getElementById('dailyQuote').textContent = quote.text;
+            document.getElementById('quoteAuthor').textContent = `- ${quote.author}`;
+            document.getElementById('athleteImage').textContent = quote.emoji;
+        }
+
+        function loadDashboardMetrics() {
+            const workoutData = JSON.parse(localStorage.getItem('workoutData') || '{}');
+            const timerData = JSON.parse(localStorage.getItem('timerData') || '{"totalTime": 0}');
+            
+            // Calcola streak
+            let streak = 0;
+            const today = new Date();
+            for (let i = 0; i < 365; i++) {
+                const checkDate = new Date(today);
+                checkDate.setDate(checkDate.getDate() - i);
+                const dateStr = formatDate(checkDate);
+                
+                const dayWorkouts = Object.keys(workoutData).filter(key => 
+                    key.startsWith(dateStr) && workoutData[key].completed
+                );
+                
+                if (dayWorkouts.length > 0) {
+                    streak++;
+                } else if (i > 0) {
+                    break;
+                }
+            }
+            
+            // Aggiorna display
+            document.getElementById('streakDisplay').textContent = streak;
+            document.getElementById('totalTimeDisplay').textContent = Math.floor((timerData.totalTime || 0) / 3600) + 'h';
+            document.getElementById('workoutsCompleted').textContent = Object.values(workoutData).filter(w => w.completed).length;
+            document.getElementById('recordsCount').textContent = Object.keys(workoutData).length;
+        }
+
+        function loadTodayWorkout() {
+            const today = new Date();
+            const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+            const todayKey = days[today.getDay()];
+            const workoutPlan = workoutPrograms[todayKey];
+            
+            document.getElementById('todayWorkoutTitle').textContent = workoutPlan.title;
+            
+            const workoutContent = document.getElementById('todayWorkoutContent');
+            const workoutData = JSON.parse(localStorage.getItem('workoutData') || '{}');
+            const todayDate = formatDate(today);
+            
+            if (todayKey === 'sunday') {
+                workoutContent.innerHTML = `
+                    <div class="exercise-group">
+                        <div class="group-title">🧘 RIPOSO TOTALE</div>
+                        <p style="text-align: center; color: var(--gold); font-size: 1.3rem; margin: 2rem 0;">
+                            Oggi è il tuo giorno di riposo! Rilassati e prepara il corpo per la settimana che verrà.
+                        </p>
+                        ${workoutPlan.exercises[0].list.map(exercise => `
+                            <div class="exercise-item">
+                                <div class="exercise-name">${exercise.name}</div>
+                                <div class="exercise-details">${exercise.sets}</div>
+                                <div class="exercise-instructions">${exercise.instructions}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                document.getElementById('completeAllBtn').style.display = 'none';
+                return;
+            }
+            
+            document.getElementById('completeAllBtn').style.display = 'block';
+            
+            workoutContent.innerHTML = workoutPlan.exercises.map(group => `
+                <div class="exercise-group">
+                    <div class="group-title">${group.group}</div>
+                    ${group.list.map((exercise, index) => {
+                        const exerciseKey = `${todayDate}-${group.group}-${index}`;
+                        const isCompleted = workoutData[exerciseKey]?.completed || false;
+                        
+                        return `
+                            <div class="exercise-item ${isCompleted ? 'completed' : ''}">
+                                <div class="exercise-name">${exercise.name}</div>
+                                <div class="exercise-details">${exercise.sets} ${exercise.rir || ''} | Rest: ${exercise.rest}</div>
+                                <div class="exercise-instructions">${exercise.instructions}</div>
+                                <div class="exercise-actions">
+                                    <button class="btn btn-success" onclick="toggleExercise('${exerciseKey}', this)">
+                                        ${isCompleted ? 'ANNULLA' : 'COMPLETA'}
+                                    </button>
+                                    <button class="btn btn-primary" onclick="addExerciseNote('${exerciseKey}')">
+                                        NOTE
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `).join('');
+        }
+
+        function loadTodayNutrition() {
+            const today = new Date();
+            const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+            const todayKey = days[today.getDay()];
+            const nutrition = weeklyNutrition[todayKey];
+            
+            const nutritionGrid = document.getElementById('nutritionGrid');
+            nutritionGrid.innerHTML = Object.entries(nutrition).map(([time, content]) => `
+                <div class="meal-card">
+                    <div class="meal-title">${time}</div>
+                    <div class="meal-content">${content}</div>
+                </div>
+            `).join('');
+        }
+
+        function toggleExercise(exerciseKey, button) {
+            const workoutData = JSON.parse(localStorage.getItem('workoutData') || '{}');
+            const exerciseItem = button.closest('.exercise-item');
+            
+            if (workoutData[exerciseKey]?.completed) {
+                delete workoutData[exerciseKey];
+                exerciseItem.classList.remove('completed');
+                button.textContent = 'COMPLETA';
+            } else {
+                workoutData[exerciseKey] = {
+                    completed: true,
+                    date: new Date().toISOString(),
+                    notes: workoutData[exerciseKey]?.notes || ''
+                };
+                exerciseItem.classList.add('completed');
+                button.textContent = 'ANNULLA';
+            }
+            
+            localStorage.setItem('workoutData', JSON.stringify(workoutData));
+            loadDashboardMetrics();
+        }
+
+        function addExerciseNote(exerciseKey) {
+            const workoutData = JSON.parse(localStorage.getItem('workoutData') || '{}');
+            const currentNote = workoutData[exerciseKey]?.notes || '';
+            
+            const note = prompt('Aggiungi una nota per questo esercizio:', currentNote);
+            if (note !== null) {
+                if (!workoutData[exerciseKey]) {
+                    workoutData[exerciseKey] = {};
+                }
+                workoutData[exerciseKey].notes = note;
+                localStorage.setItem('workoutData', JSON.stringify(workoutData));
+            }
+        }
+
+        function completeAllWorkout() {
+            const today = new Date();
+            const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+            const todayKey = days[today.getDay()];
+            
+            if (todayKey === 'sunday') return;
+            
+            const workoutPlan = workoutPrograms[todayKey];
+            const workoutData = JSON.parse(localStorage.getItem('workoutData') || '{}');
+            const todayDate = formatDate(today);
+
+            workoutPlan.exercises.forEach(group => {
+                group.list.forEach((exercise, index) => {
+                    const exerciseKey = `${todayDate}-${group.group}-${index}`;
+                    workoutData[exerciseKey] = {
+                        completed: true,
+                        date: new Date().toISOString(),
+                        notes: workoutData[exerciseKey]?.notes || ''
+                    };
+                });
+            });
+
+            localStorage.setItem('workoutData', JSON.stringify(workoutData));
+            loadTodayWorkout();
+            loadDashboardMetrics();
+            
+            // Animazione di successo
+            document.body.style.background = 'linear-gradient(135deg, #00ff41, #1a1a1a, #00ff41)';
+            setTimeout(() => {
+                document.body.style.background = 'linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 50%, #2d2d2d 100%)';
+            }, 2000);
+            
+            alert('🔥 BEAST MODE ACTIVATED! 🔥\nHai completato tutto l\'allenamento! Sei una macchina! 💪');
+        }
+
+        // TIMER FUNCTIONS
+        function startTimer() {
+            if (!timerRunning) {
+                timerStart = performance.now() - timerElapsed;
+                timerRunning = true;
+                timerInterval = setInterval(updateTimer, 10);
+            }
+        }
+
+        function pauseTimer() {
+            if (timerRunning) {
+                clearInterval(timerInterval);
+                timerRunning = false;
+                
+                // Salva il tempo della sessione
+                const timerData = JSON.parse(localStorage.getItem('timerData') || '{"totalTime": 0, "sessions": []}');
+                const sessionTime = Math.floor(timerElapsed / 1000);
+                timerData.totalTime = (timerData.totalTime || 0) + sessionTime;
+                timerData.sessions.push({
+                    date: new Date().toISOString(),
+                    duration: sessionTime
+                });
+                localStorage.setItem('timerData', JSON.stringify(timerData));
+                loadDashboardMetrics();
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timerElapsed = 0;
+            timerRunning = false;
+            updateTimerDisplay(0);
+        }
+
+        function updateTimer() {
+            timerElapsed = performance.now() - timerStart;
+            updateTimerDisplay(timerElapsed);
+        }
+
+        function updateTimerDisplay(elapsed) {
+            const totalSeconds = Math.floor(elapsed / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            
+            const display = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('timerDisplay').textContent = display;
+        }
+
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // Carica metriche all'avvio
+        loadDashboardMetrics();
+    </script>
+</body>
+</html>
